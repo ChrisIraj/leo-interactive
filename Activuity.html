@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Photo Gallery</title>
+  <style>
+    /* Container that will change text and background image on hover */
+    #image {
+      width: 500px;
+      height: 300px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #333;
+    }
+    /* Style for the thumbnails */
+    .thumb {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      cursor: pointer;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- Div that displays the preview -->
+  <div id="image">Hover over an image below to display here.</div>
+
+  <!-- Gallery of images with onmouseover and onmouseout events -->
+  <img class="thumb" 
+       src="1 photo nature.jpg" 
+       alt="Nature Image" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()">
+       
+  <img class="thumb" 
+       src="2 photo sea.jpg" 
+       alt="Sea Image" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()">
+       
+  <img class="thumb" 
+       src="3 photo city.jpg"
+       alt="City Image" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()">
+       
+  <img class="thumb" 
+       src="4 photo nature.jpg" 
+       alt="Nature 1 Image" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()">
+
+  <script>
+    // When the mouse hovers over a thumbnail
+    function upDate(previewPic) {
+      console.log("Mouse over triggered");
+      // Logging alt text and image source to check that the event works.
+      console.log("Alt text: " + previewPic.alt);
+      console.log("Source: " + previewPic.src);
+      
+      // Update the text of the div to the alt text of the image
+      var displayDiv = document.getElementById("image");
+      displayDiv.innerHTML = previewPic.alt;
+      
+      // Set the background image of the div to the hovered image
+      displayDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+    }
+
+    // When the mouse leaves the thumbnail, reset the div
+    function undo() {
+      console.log("Mouse out triggered");
+      var displayDiv = document.getElementById("image");
+      // Reset to original text
+      displayDiv.innerHTML = "Hover over an image below to display here.";
+      // Remove the background image
+      displayDiv.style.backgroundImage = "url('')";
+    }
+  </script>
+</body>
+</html>
